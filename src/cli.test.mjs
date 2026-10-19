@@ -64,7 +64,7 @@ test("repeat installation and locale update retain byte ownership and unrelated 
       await readFile(path.join(root, ".context4-skills.json"), "utf8"),
     );
     assert.equal(receipt.language, "ru");
-    assert.equal(receipt.version, "1.2.0");
+    assert.equal(receipt.version, "1.2.1");
     await run(["remove", ...flags], o);
     assert.equal(
       await readFile(path.join(root, "other/SKILL.md"), "utf8"),

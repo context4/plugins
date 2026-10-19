@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "context4",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Connect AI to amoCRM, Bitrix24, Wazzup, Mango Office, Fintablo, Voximplant, Grafana and other authorized services through Context4 MCP.",
   "homepage": "https://ctx4.me",
   "extensions": {
@@ -15,7 +15,9 @@
         "brandColor": "#8B5CF6",
         "logo": "./assets/logo.svg",
         "composerIcon": "./assets/logo.svg",
-        "screenshots": ["./assets/examples.png"],
+        "screenshots": [
+          "./assets/examples.png"
+        ],
         "defaultPrompt": [
           "Find overdue deals in my connected CRM and summarize next actions.",
           "Find records for a customer across my connected services.",
@@ -27,7 +29,8 @@
         "supportURL": "https://ctx4.me/support",
         "capabilities": [],
         "logoDark": "./assets/logo.svg",
-        "composerIconDark": "./assets/logo.svg"
+        "composerIconDark": "./assets/logo.svg",
+        "developerName": "MATVEIKIN SERGEI"
       }
     }
   },
@@ -71,5 +74,8 @@
     "github",
     "linear",
     "sentry"
-  ]
+  ],
+  "author": {
+    "name": "MATVEIKIN SERGEI"
+  }
 }

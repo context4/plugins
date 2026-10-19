@@ -1,10 +1,19 @@
-# Context4 for Claude
+# Context4 for Codex and Claude Code
 
-Context4 connects Claude to business services through accounts you authorize. This plugin includes the Context4 MCP connection and three skills: service discovery and execution, client setup, and workflows across connected services. Available actions depend on your account, workspace permissions and active provider connections.
+Context4 connects Codex and Claude Code to business services through accounts you authorize. This plugin includes the Context4 MCP connection and three skills: service discovery and execution, client setup, and workflows across connected services. Available actions depend on your account, workspace permissions and active provider connections.
 
 ## Connect
 
-Add the plugin in Claude and complete Context4 browser OAuth when requested. The remote MCP endpoint is https://ctx4.me/mcp. Sign in to the intended workspace, inspect the requested permissions, and select an authorized provider account. No API key or credential belongs in this package.
+Install from the public marketplace:
+
+```sh
+codex plugin marketplace add context4/plugins
+codex plugin add context4@context4
+```
+
+For Claude Code, use `claude plugin marketplace add context4/plugins` and `claude plugin install context4@context4`.
+
+Restart the client and complete Context4 browser OAuth when requested. The remote MCP endpoint is https://ctx4.me/mcp. Sign in to the intended workspace, inspect the requested permissions, and select an authorized provider account. No API key or credential belongs in this package.
 
 ## Try it
 

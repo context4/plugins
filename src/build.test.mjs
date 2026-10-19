@@ -22,7 +22,7 @@ test("both plugin formats and localized skill archives share canonical bytes and
     const manifest = JSON.parse(
       await readFile(path.join(temp, "one/manifest.json"), "utf8"),
     );
-    assert.equal(manifest.version, "1.2.0");
+    assert.equal(manifest.version, "1.2.1");
     const packageVersion = JSON.parse(
       await readFile(path.join(root, "package.json"), "utf8"),
     ).version;
@@ -46,6 +46,21 @@ test("both plugin formats and localized skill archives share canonical bytes and
       assert.equal(bytes.length, facts.bytes);
     }
     const openai = unzipSync(await readFile(path.join(temp, "one/plugin.zip")));
+    for (const name of ["plugin.json", "mcp.json"])
+      assert.deepEqual(
+        Buffer.from(openai[name]),
+        await readFile(path.join(root, "plugins/context4", name)),
+      );
+    const portable = JSON.parse(Buffer.from(openai["plugin.json"]).toString());
+    assert.equal(portable.version, manifest.version);
+    assert.equal(portable.extensions["com.openai"].interface.displayName, "Context4");
+    assert.ok(
+      openai[portable.extensions["com.openai"].onboardingSkill.replace(/^\.\//, "")],
+    );
+    assert.equal(
+      JSON.parse(Buffer.from(openai["mcp.json"]).toString()).mcpServers.context4.url,
+      "https://ctx4.me/mcp",
+    );
     const claude = unzipSync(
       await readFile(path.join(temp, "one/claude-plugin.zip")),
     );
