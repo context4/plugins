@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "context4": {
+      "type": "streamable-http",
+      "url": "@@CONTEXT4_MCP_URL@@"
+    }
+  }
+}

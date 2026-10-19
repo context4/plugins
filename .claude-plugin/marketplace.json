@@ -1,0 +1,14 @@
+{
+  "name": "context4",
+  "owner": {
+    "name": "MATVEIKIN SERGEI"
+  },
+  "plugins": [
+    {
+      "name": "context4",
+      "source": "./plugins/context4",
+      "description": "Connect authorized business services with Context4 MCP and three reusable skills."
+    }
+  ],
+  "description": "Context4 business-service plugins and reusable agent skills."
+}

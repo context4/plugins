@@ -1,0 +1,33 @@
+[
+  {
+    "id": "context4",
+    "name": "Context4",
+    "version": "1.2.0",
+    "role": "Работа с подключёнными сервисами",
+    "baseline": true,
+    "files": [
+      "SKILL.md",
+      "LICENSE",
+      "ATTRIBUTION.md",
+      "references/for-you.md",
+      "references/platform.md",
+      "references/errors.md"
+    ]
+  },
+  {
+    "id": "context4-setup",
+    "name": "Подключение Context4",
+    "version": "1.2.0",
+    "role": "Установка, MCP, вход и первая проверка",
+    "baseline": true,
+    "files": ["SKILL.md", "LICENSE", "ATTRIBUTION.md", "references/clients.md"]
+  },
+  {
+    "id": "context4-workflows",
+    "name": "Задачи между системами",
+    "version": "1.2.0",
+    "role": "Чтение, сопоставление и поручения в нескольких сервисах",
+    "baseline": false,
+    "files": ["SKILL.md", "LICENSE", "ATTRIBUTION.md", "references/matching.md"]
+  }
+]
