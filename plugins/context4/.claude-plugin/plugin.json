@@ -1,0 +1,18 @@
+{
+  "name": "context4",
+  "displayName": "Context4",
+  "version": "1.2.0",
+  "description": "Use authorized business services through Context4 MCP, with setup and cross-service workflow skills.",
+  "author": {
+    "name": "MATVEIKIN SERGEI"
+  },
+  "homepage": "https://ctx4.me",
+  "license": "MIT",
+  "keywords": ["context4", "crm", "business", "integrations"],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://ctx4.me/docs/agent-setup.md",
+  "supportUrl": "https://ctx4.me/support",
+  "privacyPolicyUrl": "https://ctx4.me/privacy",
+  "termsOfServiceUrl": "https://ctx4.me/terms",
+  "repository": "https://github.com/context4/plugins"
+}

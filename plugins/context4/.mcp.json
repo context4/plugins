@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "context4": {
+      "type": "http",
+      "url": "https://ctx4.me/mcp"
+    }
+  }
+}
