@@ -3,7 +3,7 @@
   "mcpServers": {
     "context4": {
       "type": "streamable-http",
-      "url": "@@CONTEXT4_MCP_URL@@"
+      "url": "https://ctx4.me/mcp"
     }
   }
 }

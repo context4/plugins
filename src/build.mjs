@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { zipSync } from "fflate";
-import { bind, ids, root, skillFiles } from "./content.mjs";
+import { ids, root, skillFiles } from "./content.mjs";
 
 const out = path.resolve(process.argv[2] ?? path.join(root, "dist"));
 const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
@@ -32,22 +32,19 @@ for (const entry of await readdir(path.join(canonical, "assets"), {
   );
 }
 const manifest = JSON.parse(
-  await readFile(path.join(root, "manifests/openai/plugin.json"), "utf8"),
+  await readFile(path.join(canonical, "plugin.json"), "utf8"),
 );
 const claude = JSON.parse(
   await readFile(path.join(canonical, ".claude-plugin/plugin.json"), "utf8"),
 );
 if (claude.version !== pkg.version)
   throw new Error("Claude plugin version must match package version");
-manifest.version = pkg.version;
-manifest.author = claude.author;
-manifest.extensions["com.openai"].interface.developerName = claude.author.name;
+if (manifest.version !== pkg.version)
+  throw new Error("Portable plugin version must match package version");
 const openai = {
   ...common,
-  "plugin.json": Buffer.from(JSON.stringify(manifest, null, 2) + "\n"),
-  "mcp.json": Buffer.from(
-    bind(await readFile(path.join(root, "manifests/openai/mcp.json"), "utf8")),
-  ),
+  "plugin.json": await readFile(path.join(canonical, "plugin.json")),
+  "mcp.json": await readFile(path.join(canonical, "mcp.json")),
 };
 const bundle = { ...common };
 for (const name of [
