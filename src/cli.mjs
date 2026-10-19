@@ -98,7 +98,10 @@ export async function run(
   } catch (error) {
     if (error.code === "EEXIST")
       throw new Error(
-        "Another Context4 skills operation is running in this directory",
+        `Another Context4 skills operation is running in this directory. ` +
+          `If no operation is running, inspect ${lock}, including ` +
+          `${path.join(lock, "backup")} and ${path.join(lock, "staging")}, ` +
+          "reconcile the skills and ownership receipt, then remove the lock.",
       );
     throw error;
   }

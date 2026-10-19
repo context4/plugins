@@ -23,6 +23,19 @@ test("both plugin formats and localized skill archives share canonical bytes and
       await readFile(path.join(temp, "one/manifest.json"), "utf8"),
     );
     assert.equal(manifest.version, "1.2.0");
+    const packageVersion = JSON.parse(
+      await readFile(path.join(root, "package.json"), "utf8"),
+    ).version;
+    for (const language of ["en", "ru"]) {
+      const files = await skillFiles(language);
+      for (const [name, bytes] of Object.entries(files)) {
+        const text = bytes.toString();
+        if (name.endsWith("/SKILL.md"))
+          assert.match(text, new RegExp(`version: "${packageVersion}"`));
+        if (name.endsWith("/ATTRIBUTION.md"))
+          assert.match(text, new RegExp(`Context4 package ${packageVersion}`));
+      }
+    }
     for (const [name, facts] of Object.entries(manifest.files)) {
       const bytes = await readFile(path.join(temp, "one", name));
       assert.deepEqual(bytes, await readFile(path.join(temp, "two", name)));

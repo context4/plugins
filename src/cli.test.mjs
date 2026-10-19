@@ -123,10 +123,14 @@ test("unowned installs, destination symlinks, receipt traversal and locks fail s
     );
     await rm(path.join(dir, ".context4-skills.json"));
     await mkdir(path.join(dir, ".context4-skills.lock"));
-    await assert.rejects(
-      run(["install", "--dir", "custom"], o),
-      /Another Context4/,
-    );
+    await assert.rejects(run(["install", "--dir", "custom"], o), (error) => {
+      assert.match(error.message, /Another Context4/);
+      assert.match(error.message, /\.context4-skills\.lock/);
+      assert.match(error.message, /backup/);
+      assert.match(error.message, /staging/);
+      assert.match(error.message, /ownership receipt/);
+      return true;
+    });
     await access(path.join(dir, ".context4-skills.lock"));
   });
 });

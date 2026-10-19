@@ -41,7 +41,7 @@ npx --yes --package=github:context4/plugins#v1.2.0 context4-skills remove --agen
 
 Use the same destination flags for update and remove. `--lang en` is the default; `--lang ru` selects Russian instructions. To update the release, explicitly select a newer GitHub tag. Restart your agent after changing its skills.
 
-The installer records hashes for its files and refuses to overwrite unowned directories or local edits, missing files, added files and symlink destinations. It does not change MCP configuration or create credentials. Use `--dir` for another agent's documented skill directory.
+The installer records hashes for its files and refuses to overwrite unowned directories or local edits, missing files, added files and symlink destinations. It does not change MCP configuration or create credentials. Use `--dir` for another agent's documented skill directory. If a process is interrupted, inspect the lock's backup, staging files, skill directories and ownership receipt before removing `.context4-skills.lock`; do not restore files blindly.
 
 ## Hosted Claude and ChatGPT
 

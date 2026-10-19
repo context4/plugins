@@ -3,7 +3,7 @@ name: context4-setup
 description: Connect an AI client to Context4 and a business account.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.2.0"
 ---
 
 # Context4 setup
