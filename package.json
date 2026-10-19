@@ -1,0 +1,39 @@
+{
+  "name": "@context4/skills",
+  "version": "1.2.0",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "context4-skills": "./src/cli.mjs"
+  },
+  "files": [
+    "src/cli.mjs",
+    "src/content.mjs",
+    "src/build.mjs",
+    "plugins/context4",
+    "locales",
+    "manifests",
+    "catalog.json"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test src/*.test.mjs",
+    "build": "node src/build.mjs",
+    "check": "npm test && npm run build"
+  },
+  "exports": {
+    "./catalog": "./catalog.json"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/context4/plugins.git"
+  },
+  "homepage": "https://ctx4.me/docs/skills",
+  "description": "Context4 skills installer and plugin packages for Claude, OpenAI and local AI clients.",
+  "devDependencies": {
+    "fflate": "0.8.2"
+  }
+}
