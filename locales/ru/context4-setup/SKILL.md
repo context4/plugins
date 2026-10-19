@@ -3,7 +3,7 @@ name: context4-setup
 description: Подключение AI-клиента к Context4 и бизнес-аккаунту.
 license: MIT
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Подключение Context4

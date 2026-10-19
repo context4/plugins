@@ -1,7 +1,7 @@
 {
   "name": "context4",
   "displayName": "Context4",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Use authorized business services through Context4 MCP, with setup and cross-service workflow skills.",
   "author": {
     "name": "MATVEIKIN SERGEI"

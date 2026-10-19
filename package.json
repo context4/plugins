@@ -1,6 +1,6 @@
 {
   "name": "@context4/skills",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "license": "MIT",
   "bin": {
@@ -12,7 +12,6 @@
     "src/build.mjs",
     "plugins/context4",
     "locales",
-    "manifests",
     "catalog.json"
   ],
   "engines": {
