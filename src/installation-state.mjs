@@ -1,4 +1,5 @@
 import { lstat, mkdir, readdir, readFile, rename, rm, writeFile, open } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { digest, validHash, validId, validPath } from "./content.mjs";
 
@@ -80,6 +81,9 @@ async function durableJson(file, value) {
 function alive(pid) {
   try { process.kill(pid, 0); return true; } catch (error) { return error.code !== "ESRCH"; }
 }
+function validOwner(value) {
+  return value && Number.isSafeInteger(value.pid) && value.pid > 0 && typeof value.nonce === "string" && value.nonce.length > 0;
+}
 async function restore(target, lock, journal) {
   if (journal?.schemaVersion !== 1 || !Array.isArray(journal.ids) || journal.ids.some((id) => !validId(id)) || new Set(journal.ids).size !== journal.ids.length || !Array.isArray(journal.previousIds) || journal.previousIds.some((id) => !journal.ids.includes(id)) || typeof journal.hadReceipt !== "boolean") throw new Error("Invalid installation recovery journal");
   if (journal.committed === true) return;
@@ -94,7 +98,7 @@ async function restore(target, lock, journal) {
   if (journal.hadReceipt) await writeFile(receipt, await readFile(backup), { mode: 0o600 });
   else await rm(receipt, { force: true });
 }
-export async function acquire(target) {
+export async function acquire(target, hooks = {}) {
   const lock = path.join(target, lockName);
   await safeAncestors(lock);
   if (await exists(lock)) {
@@ -102,13 +106,19 @@ export async function acquire(target) {
     await safeAncestors(owner); await safeAncestors(journalFile);
     if (!(await exists(owner))) throw new Error(`Another Context4 operation or legacy lock exists: ${lock}; inspect backup, staging and ownership receipt before removing the lock`);
     const metadata = JSON.parse(await readFile(owner, "utf8"));
-    if (!Number.isSafeInteger(metadata.pid) || metadata.pid <= 0 || alive(metadata.pid)) throw new Error(`Another Context4 operation is running: ${lock}; inspect backup, staging and ownership receipt`);
+    if (!validOwner(metadata)) throw new Error(`Invalid Context4 lock owner: ${lock}; inspect backup, staging and ownership receipt`);
+    if (alive(metadata.pid)) throw new Error(`Another Context4 operation is running: ${lock}; inspect backup, staging and ownership receipt`);
     try { await mkdir(path.join(lock, "recovering")); } catch (error) { if (error.code === "EEXIST") throw new Error(`Another recovery or interrupted recovery needs inspection: ${lock}`); throw error; }
+    if (typeof hooks.onRecoveryClaim === "function") await hooks.onRecoveryClaim({ lock, owner, metadata });
+    if (!(await exists(owner))) throw new Error(`Lock owner disappeared during recovery: ${lock}; inspect backup, staging and ownership receipt`);
+    const claimed = JSON.parse(await readFile(owner, "utf8"));
+    if (!validOwner(claimed) || claimed.pid !== metadata.pid || claimed.nonce !== metadata.nonce) throw new Error(`Lock owner changed during recovery: ${lock}; inspect backup, staging and ownership receipt`);
+    if (alive(claimed.pid)) throw new Error(`Lock owner became active during recovery: ${lock}; inspect backup, staging and ownership receipt`);
     if (await exists(journalFile)) await restore(target, lock, JSON.parse(await readFile(journalFile, "utf8")));
     await rm(lock, { recursive: true });
   }
   try { await mkdir(lock); } catch (error) { if (error.code === "EEXIST") throw new Error(`Another Context4 operation is running: ${lock}`); throw error; }
-  await durableJson(path.join(lock, "owner.json"), { pid: process.pid });
+  await durableJson(path.join(lock, "owner.json"), { pid: process.pid, nonce: randomUUID() });
   return lock;
 }
 export async function transact(target, lock, previous, next, replacements, progress) {

@@ -4,14 +4,17 @@ import {
   mkdtemp,
   mkdir,
   readFile,
+  realpath,
   rm,
   symlink,
   writeFile,
   access,
 } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
 import { run } from "./cli.mjs";
+import { acquire } from "./installation-state.mjs";
 
 async function sandbox(action) {
   const base = await mkdtemp(path.join(os.tmpdir(), "ctx4-install-"));
@@ -135,6 +138,27 @@ test("unowned installs, destination symlinks, receipt traversal and locks fail s
     await access(path.join(dir, ".context4-skills.lock"));
   });
 });
+test("recovery refuses to remove a lock after its owner is replaced", async () =>
+  sandbox(async ({ cwd }) => {
+    const target = path.join(await realpath(cwd), "custom"), lock = path.join(target, ".context4-skills.lock");
+    await mkdir(lock, { recursive: true });
+    const deadPid = spawnSync(process.execPath, ["-e", ""]).pid;
+    assert.ok(deadPid);
+    const original = { pid: deadPid, nonce: "original-owner" };
+    const replacement = { pid: process.pid, nonce: "replacement-owner" };
+    const owner = path.join(lock, "owner.json");
+    await writeFile(owner, JSON.stringify(original));
+    await assert.rejects(
+      acquire(target, {
+        async onRecoveryClaim() {
+          await writeFile(owner, JSON.stringify(replacement));
+        },
+      }),
+      /Lock owner changed during recovery/,
+    );
+    assert.deepEqual(JSON.parse(await readFile(owner, "utf8")), replacement);
+    await access(lock);
+  }));
 test("explicit custom path works; unsupported or ambiguous invocations do not write", async () =>
   sandbox(async (o) => {
     await run(["install", "--dir", "custom", "--lang", "ru"], o);
