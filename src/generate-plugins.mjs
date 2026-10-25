@@ -20,12 +20,16 @@ export async function generatePlugins(check = false) {
   Object.assign(files, Object.fromEntries(Object.entries(await tree(path.join(root, "assets"))).map(([key, value]) => [`assets/${key}`, value])));
   Object.assign(files, Object.fromEntries(Object.entries(await skillFiles()).map(([key, value]) => [`skills/${key}`, value])));
   const destination = path.join(root, "plugins/context4");
-  if ((await lstat(destination)).isSymbolicLink()) throw new Error("Symlink generated directory rejected");
+  try {
+    if ((await lstat(destination)).isSymbolicLink()) throw new Error("Symlink generated directory rejected");
+  } catch (error) {
+    if (check || error.code !== "ENOENT") throw error;
+  }
   if (check) {
     const actual = await tree(destination);
     if (Object.keys(actual).length !== Object.keys(files).length || Object.entries(files).some(([name, bytes]) => !actual[name]?.equals(bytes))) throw new Error("Generated plugin drift; run npm run generate and commit the projection");
   } else {
-    await rm(destination, { recursive: true });
+    await rm(destination, { recursive: true, force: true });
     for (const [name, bytes] of Object.entries(files)) {
       const target = path.join(destination, name);
       await mkdir(path.dirname(target), { recursive: true }); await writeFile(target, bytes);

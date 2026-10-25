@@ -1,12 +1,32 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { cp, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { unzipSync } from "fflate";
 import { root, skillFiles } from "./content.mjs";
+
+const sourceEntries = [
+  "assets",
+  "catalog.json",
+  "locales",
+  "packaging",
+  "package.json",
+  "plugins",
+  "profiles",
+  "skills",
+  "src",
+];
+async function isolatedSourceCopy(prefix) {
+  const temp = await mkdtemp(path.join(os.tmpdir(), prefix));
+  const copy = path.join(temp, "repo");
+  await mkdir(copy);
+  for (const name of sourceEntries)
+    await cp(path.join(root, name), path.join(copy, name), { recursive: true });
+  return { temp, copy, script: await realpath(path.join(copy, "src/generate-plugins.mjs")) };
+}
 
 test("both plugin formats and localized skill archives share canonical bytes and reproducible hashes", async () => {
   const temp = await mkdtemp(path.join(os.tmpdir(), "ctx4-release-"));
@@ -115,32 +135,31 @@ test("both plugin formats and localized skill archives share canonical bytes and
 });
 
 test("generated projection check catches drift in an isolated source copy", async () => {
-  const temp = await mkdtemp(path.join(os.tmpdir(), "ctx4-projection-"));
-  const copy = path.join(temp, "repo");
+  const { temp, copy, script } = await isolatedSourceCopy("ctx4-projection-");
   try {
-    await mkdir(copy);
-    for (const name of [
-      "assets",
-      "catalog.json",
-      "locales",
-      "packaging",
-      "package.json",
-      "plugins",
-      "profiles",
-      "skills",
-      "src",
-    ]) {
-      await cp(path.join(root, name), path.join(copy, name), { recursive: true });
-    }
     const generated = path.join(copy, "plugins/context4/plugin.json");
     await writeFile(generated, Buffer.concat([await readFile(generated), Buffer.from("\n")]));
     const result = spawnSync(
       process.execPath,
-      [await realpath(path.join(copy, "src/generate-plugins.mjs")), "--check"],
+      [script, "--check"],
       { encoding: "utf8" },
     );
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /Generated plugin drift/);
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test("generator recreates a missing projection while check mode fails", async () => {
+  const { temp, copy, script } = await isolatedSourceCopy("ctx4-generate-");
+  try {
+    await rm(path.join(copy, "plugins/context4"), { recursive: true, force: true });
+    const check = spawnSync(process.execPath, [script, "--check"], { encoding: "utf8" });
+    assert.notEqual(check.status, 0);
+    const generate = spawnSync(process.execPath, [script], { encoding: "utf8" });
+    assert.equal(generate.status, 0, generate.stderr);
+    await access(path.join(copy, "plugins/context4/plugin.json"));
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
