@@ -22,7 +22,7 @@ test("both plugin formats and localized skill archives share canonical bytes and
     const manifest = JSON.parse(
       await readFile(path.join(temp, "one/manifest.json"), "utf8"),
     );
-    assert.equal(manifest.version, "1.2.1");
+    assert.equal(manifest.version, "1.3.0");
     const packageVersion = JSON.parse(
       await readFile(path.join(root, "package.json"), "utf8"),
     ).version;

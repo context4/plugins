@@ -63,8 +63,9 @@ test("repeat installation and locale update retain byte ownership and unrelated 
     const receipt = JSON.parse(
       await readFile(path.join(root, ".context4-skills.json"), "utf8"),
     );
-    assert.equal(receipt.language, "ru");
-    assert.equal(receipt.version, "1.2.1");
+    assert.equal(receipt.schemaVersion, 2);
+    for (const skill of Object.values(receipt.skills)) assert.equal(skill.locale, "ru");
+    for (const skill of Object.values(receipt.skills)) assert.equal(skill.version, "1.3.0");
     await run(["remove", ...flags], o);
     assert.equal(
       await readFile(path.join(root, "other/SKILL.md"), "utf8"),
