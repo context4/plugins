@@ -26,6 +26,19 @@ async function release(cwd,version,dependencies={}) {
 const receipt = async (cwd)=>JSON.parse(await readFile(path.join(cwd,"installed/.context4-skills.json"),"utf8"));
 const execute = (cwd,args)=>run([...args,"--dir","installed"],{cwd});
 
+test("release loader rejects partial plugin packaging",async()=>sandbox(async(cwd)=>{
+  await release(cwd,"1.0.0");
+  const packaging=path.join(cwd,"1.0.0/packaging/context4");
+  await mkdir(packaging,{recursive:true});
+  await writeFile(path.join(packaging,"plugin.json"),"{}");
+  await assert.rejects(loadLibrary(path.join(cwd,"1.0.0")),/ENOENT/);
+  await writeFile(path.join(packaging,"mcp.json"),"{}");
+  await writeFile(path.join(packaging,".mcp.json"),"{}");
+  await mkdir(path.join(packaging,".claude-plugin"));
+  await writeFile(path.join(packaging,".claude-plugin/plugin.json"),"{}");
+  await assert.rejects(loadLibrary(path.join(cwd,"1.0.0")),/ENOENT/);
+}));
+
 test("select one skill, retain mixed releases/locales and remove retired IDs offline",async()=>sandbox(async(cwd)=>{
   const one=await release(cwd,"1.0.0"),two=await release(cwd,"2.0.0");
   await execute(cwd,["install","alpha","beta","--source",one]);

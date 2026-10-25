@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
@@ -109,6 +109,38 @@ test("both plugin formats and localized skill archives share canonical bytes and
       Buffer.from(ru["context4/SKILL.md"]),
       (await skillFiles("ru"))["context4/SKILL.md"],
     );
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test("generated projection check catches drift in an isolated source copy", async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), "ctx4-projection-"));
+  const copy = path.join(temp, "repo");
+  try {
+    await mkdir(copy);
+    for (const name of [
+      "assets",
+      "catalog.json",
+      "locales",
+      "packaging",
+      "package.json",
+      "plugins",
+      "profiles",
+      "skills",
+      "src",
+    ]) {
+      await cp(path.join(root, name), path.join(copy, name), { recursive: true });
+    }
+    const generated = path.join(copy, "plugins/context4/plugin.json");
+    await writeFile(generated, Buffer.concat([await readFile(generated), Buffer.from("\n")]));
+    const result = spawnSync(
+      process.execPath,
+      [await realpath(path.join(copy, "src/generate-plugins.mjs")), "--check"],
+      { encoding: "utf8" },
+    );
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Generated plugin drift/);
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
