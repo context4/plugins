@@ -1,18 +1,22 @@
 {
   "name": "@context4/skills",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "type": "module",
   "license": "MIT",
   "bin": {
     "context4-skills": "./src/cli.mjs"
   },
   "files": [
-    "src/cli.mjs",
-    "src/content.mjs",
-    "src/build.mjs",
-    "plugins/context4",
+    "src/*.mjs",
+    "!src/*.test.mjs",
+    "skills",
     "locales",
-    "catalog.json"
+    "catalog.json",
+    "profiles",
+    "packaging",
+    "assets",
+    "plugins/context4",
+    "!skills/**/evals/**"
   ],
   "engines": {
     "node": ">=22"
@@ -20,10 +24,13 @@
   "scripts": {
     "test": "node --test src/*.test.mjs",
     "build": "node src/build.mjs",
-    "check": "npm test && npm run build"
+    "check": "npm run check:generated && npm test && npm run build",
+    "generate": "node src/generate-plugins.mjs",
+    "check:generated": "node src/generate-plugins.mjs --check"
   },
   "exports": {
-    "./catalog": "./catalog.json"
+    "./catalog": "./catalog.json",
+    "./content": "./src/content.mjs"
   },
   "private": true,
   "repository": {
