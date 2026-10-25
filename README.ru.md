@@ -59,7 +59,7 @@ claude plugin install context4@context4
 | Как работают MCP-инструменты | [Справочник инструментов](https://context4.me/docs/mcp-tools?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
 | Как управлять доступом и отключить аккаунт | [Доступ и отключение](https://context4.me/docs/access-and-disconnect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
 | Как обрабатываются данные | [Обработка данных](https://context4.me/docs/data-handling?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
-| Какие сейчас условия использования | [Условия](https://context4.me/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Сколько стоит использование | [Стоимость](https://context4.me/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
 
 [Поддержка](https://context4.me/support) · [Конфиденциальность](https://context4.me/privacy) · [Условия использования](https://context4.me/terms)
 

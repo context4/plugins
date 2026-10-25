@@ -1,4 +1,4 @@
-# Context4 MCP — your work services in your AI
+# Context4 MCP — business tools for your AI assistant
 
 Context4 connects Codex and Claude Code to business services through accounts you authorize. This plugin includes the Context4 MCP connection and three skills: service discovery and execution, client setup, and workflows across connected services. Available actions depend on your account, workspace permissions and active provider connections.
 
