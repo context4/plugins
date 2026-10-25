@@ -1,6 +1,59 @@
-# Context4 plugins and skills
+<p align="center">
+  <a href="https://ctx4.me/?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=mcp-presence"><img src="plugins/context4/assets/logo.png" alt="Context4" width="96" /></a>
+</p>
 
-Connect AI clients to authorized business services through [Context4](https://ctx4.me). This repository contains three product skills, a plugin and marketplace for Codex and Claude Code, OpenAI plugin metadata, and a local skills installer. It contains no service backend or account credentials.
+# Context4 MCP — give your AI work to do
+
+**Find the customer. Read the deal. Move the task forward.**
+
+Connect AI assistants to CRM and business services through one hosted MCP server. Context4 gives your AI tools to find work data and carry out the actions you request in accounts you authorize.
+
+**[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)** · [Connect your AI](https://ctx4.me/connect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [По-русски](README.ru.md)
+
+[![Example requests: find overdue deals, find customer records, verify a connection](plugins/context4/assets/examples.png)](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
+
+## Start with a task, not an integration project
+
+| Ask your AI | Where to explore it |
+| --- | --- |
+| “Find overdue deals in my connected CRM and summarize the next steps.” | [amoCRM MCP](https://ctx4.me/apps/amocrm?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [Bitrix24 MCP](https://ctx4.me/apps/bitrix24?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| “Show my team's open tasks in Linear.” | [Linear MCP](https://ctx4.me/apps/linear?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| “Find this customer in my connected services and prepare a briefing.” | [Workflows and their prerequisites](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+
+These are example requests, not reports of customer results. Available actions depend on the live catalog, connected accounts and your permissions. Check each connector's status and supported actions on the website.
+
+## Connect once. Start with a read.
+
+1. **[Choose your AI client on the website](https://ctx4.me/connect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence).** ChatGPT, Claude, Codex and Claude Code have dedicated guides. See the guides for client-specific availability and limitations.
+2. **Sign in and connect a work account.** Complete browser OAuth and review the requested access yourself. Do not paste passwords, API keys or OAuth tokens into a chat or this repository.
+3. **Ask for one read, then check the result.** For example: “Show my connected accounts, then list the tasks I can access.” Authorize changes and messages within the task you actually want performed.
+
+| MCP connection | Value |
+| --- | --- |
+| Remote server | `https://ctx4.me/mcp` |
+| Transport | Streamable HTTP |
+| Sign-in | Browser OAuth |
+| Setup and first task | [Step-by-step guide](https://ctx4.me/docs/agent-setup?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+
+For direct MCP setup, follow your client's [connection guide](https://ctx4.me/connect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence). Plugins below bundle the connection with reusable skills; you do not need to run a local Context4 server.
+
+## Keep exploring on Context4
+
+The website holds the full, maintained documentation. This repository holds installation instructions and the public plugin packages.
+
+| What you need | Read on the website |
+| --- | --- |
+| Understand the product | [What is Context4?](https://ctx4.me/docs/product-overview?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Find a supported business service | [Connector catalog](https://ctx4.me/apps?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Combine services in one task | [Business workflows](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Understand tools and dynamic discovery | [MCP tool reference](https://ctx4.me/docs/mcp-tools?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Review access and disconnect | [Access guide](https://ctx4.me/docs/access-and-disconnect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Understand data handling | [Data handling](https://ctx4.me/docs/data-handling?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) |
+| Check current service terms | [Pricing](https://ctx4.me/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [Privacy](https://ctx4.me/privacy) · [Terms](https://ctx4.me/terms) |
+
+## Install a plugin or skills
+
+This public repository contains three product skills, a plugin and marketplace for Codex and Claude Code, OpenAI plugin metadata, and a local skills installer. It contains no service backend or account credentials.
 
 ## Codex plugin
 
