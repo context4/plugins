@@ -1,0 +1,22 @@
+{
+  "codex": {
+    "project": ".agents/skills",
+    "global": ".agents/skills"
+  },
+  "claude": {
+    "project": ".claude/skills",
+    "global": ".claude/skills"
+  },
+  "cursor": {
+    "project": ".cursor/skills",
+    "global": ".cursor/skills"
+  },
+  "hermes": {
+    "project": null,
+    "global": ".hermes/skills"
+  },
+  "openclaw": {
+    "project": "skills",
+    "global": ".openclaw/skills"
+  }
+}

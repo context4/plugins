@@ -3,7 +3,7 @@ name: context4
 description: Work with connected business services through Context4.
 license: MIT
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   upstream: "ComposioHQ/composio@231122de19abd820eac91549382e407e2d2cbe06"
 ---
 

@@ -3,7 +3,7 @@ name: context4
 description: Работа с подключёнными бизнес-сервисами через Context4.
 license: MIT
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
   upstream: "ComposioHQ/composio@231122de19abd820eac91549382e407e2d2cbe06"
 ---
 
@@ -13,16 +13,16 @@ metadata:
 
 ## 1. Выбери способ работы
 
-- Человек хочет использовать свою AI-систему для CRM, звонков, сообщений или задач: используй Context4 MCP `https://ctx4.me/mcp` с браузерным OAuth.
+- Человек хочет использовать свою AI-систему для CRM, звонков, сообщений или задач: используй Context4 MCP `@@CONTEXT4_MCP_URL@@` с браузерным OAuth.
 - Разработчик интегрирует приложение: сохрани его модель идентификации и существующий фреймворк; прочитай [Платформу](references/platform.md). Поддерживаемый SDK-клиент — Composio с адресом Context4, а не облачный сервис Composio.
 - Если неясно, задай один короткий вопрос. Не превращай вопрос по документации или узкое исправление в процедуру подключения.
 
 ## 2. Выбери задачу
 
-- Настройка или отсутствующий MCP: прочитай [подключение агента](https://ctx4.me/docs/agent-setup.md) и используй скилл `context4-setup`, если он установлен.
+- Настройка или отсутствующий MCP: прочитай [подключение агента](@@CONTEXT4_DOCS_ORIGIN@@/docs/agent-setup.md) и используй скилл `context4-setup`, если он установлен.
 - Работа с бизнес-сервисом: прочитай [Персонального агента](references/for-you.md).
 - Диагностика сбоя: прочитай [Ошибки](references/errors.md).
-- Работа между системами: используй `context4-workflows` или [бизнес-рецепты](https://ctx4.me/docs/business-cases.md).
+- Работа между системами: используй `context4-workflows` или [бизнес-рецепты](@@CONTEXT4_DOCS_ORIGIN@@/docs/business-cases.md).
 
 ## Выполни выбранную задачу
 
@@ -39,6 +39,6 @@ metadata:
 
 ## Каноническая информация
 
-[Подключение агента](https://ctx4.me/docs/agent-setup.md), [индекс документации](https://ctx4.me/docs/agent-index.json), [схемы MCP](https://ctx4.me/docs/mcp-tools.md), [руководство по провайдерам](https://ctx4.me/docs/agent-providers.md). Открывай справочные файлы только по необходимости. Выполни поручение пользователя, не ограничивайся ссылками.
+[Подключение агента](@@CONTEXT4_DOCS_ORIGIN@@/docs/agent-setup.md), [индекс документации](@@CONTEXT4_DOCS_ORIGIN@@/docs/agent-index.json), [схемы MCP](@@CONTEXT4_DOCS_ORIGIN@@/docs/mcp-tools.md), [руководство по провайдерам](@@CONTEXT4_DOCS_ORIGIN@@/docs/agent-providers.md). Открывай справочные файлы только по необходимости. Выполни поручение пользователя, не ограничивайся ссылками.
 
 Адаптировано из маршрутизатора Composio под лицензией MIT; см. [атрибуцию](ATTRIBUTION.md) и [лицензию](LICENSE).

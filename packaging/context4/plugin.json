@@ -1,0 +1,81 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "context4",
+  "version": "1.3.0",
+  "description": "Connect AI to amoCRM, Bitrix24, Wazzup, Mango Office, Fintablo, Voximplant, Grafana and other authorized services through Context4 MCP.",
+  "homepage": "@@CONTEXT4_DOCS_ORIGIN@@",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/context4-setup/SKILL.md",
+      "interface": {
+        "displayName": "Context4",
+        "shortDescription": "Your services, connected.",
+        "longDescription": "Connect your AI to amoCRM, Bitrix24, Wazzup, Mango Office, Fintablo, Voximplant, Grafana, GitHub, Linear and Sentry. Find records and run tasks through your authorized connections. Ozon, Wildberries (WB) and MoySklad integrations are planned.",
+        "category": "Productivity",
+        "brandColor": "#8B5CF6",
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg",
+        "screenshots": [
+          "./assets/examples.png"
+        ],
+        "defaultPrompt": [
+          "Find overdue deals in my connected CRM and summarize next actions.",
+          "Find records for a customer across my connected services.",
+          "Show my connected accounts and help me connect another service."
+        ],
+        "websiteURL": "@@CONTEXT4_DOCS_ORIGIN@@",
+        "privacyPolicyURL": "@@CONTEXT4_DOCS_ORIGIN@@/privacy",
+        "termsOfServiceURL": "@@CONTEXT4_DOCS_ORIGIN@@/terms",
+        "supportURL": "@@CONTEXT4_DOCS_ORIGIN@@/support",
+        "capabilities": [],
+        "logoDark": "./assets/logo.svg",
+        "composerIconDark": "./assets/logo.svg",
+        "developerName": "MATVEIKIN SERGEI"
+      }
+    }
+  },
+  "keywords": [
+    "context4",
+    "ctx4",
+    "crm",
+    "amo",
+    "amocrm",
+    "amo crm",
+    "амо",
+    "амосрм",
+    "амо срм",
+    "kommo",
+    "bitrix",
+    "bitrix24",
+    "битрикс",
+    "битрикс24",
+    "wb",
+    "wildberries",
+    "willdberies",
+    "вайлдберриз",
+    "валберис",
+    "ozon",
+    "озон",
+    "moysklad",
+    "мойсклад",
+    "мой склад",
+    "wazzup",
+    "ватсап",
+    "whatsapp",
+    "mango",
+    "mango office",
+    "манго",
+    "fintablo",
+    "финтабло",
+    "voximplant",
+    "воксимплант",
+    "grafana",
+    "графана",
+    "github",
+    "linear",
+    "sentry"
+  ],
+  "author": {
+    "name": "MATVEIKIN SERGEI"
+  }
+}

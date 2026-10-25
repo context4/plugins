@@ -3,7 +3,7 @@ name: context4-workflows
 description: Complete business tasks using data from multiple services.
 license: MIT
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Context4 multi-service workflows
