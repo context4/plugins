@@ -10,7 +10,6 @@ Connect AI assistants to CRM and business services through one hosted MCP server
 
 **[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)** · [Connect your AI](https://ctx4.me/connect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [По-русски](README.ru.md)
 
-[![Example requests: find overdue deals, find customer records, verify a connection](plugins/context4/assets/examples.png)](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 ## Start with a task, not an integration project
 

@@ -4,7 +4,6 @@ Context4 connects Codex and Claude Code to business services through accounts yo
 
 **[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)** · [Choose your AI client](https://ctx4.me/connect?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
 
-[![Example requests for Context4](assets/examples.png)](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
 
 ## Connect
 
