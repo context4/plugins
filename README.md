@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="https://ctx4.me/?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=mcp-presence"><img src="plugins/context4/assets/logo.png" alt="Context4" width="96" /></a>
-</p>
+[![Context4 — your services, one conversation](plugins/context4/assets/context4-cover-en.webp)](https://ctx4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 # Context4 MCP — give your AI work to do
 
@@ -135,6 +133,8 @@ The public package, installer and release tooling are MIT licensed. Existing ski
 [Support](https://ctx4.me/support) · [Documentation](https://ctx4.me/docs/agent-setup.md).
 
 ## Agent Kit source and selective installation
+
+[![Context4 Agent Kit: Setup, Services and Workflows](plugins/context4/assets/context4-agent-kit.webp)](https://ctx4.me/docs/skills?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 This repository now owns the canonical skill library for client plugins, standalone skill installation, marketplace archives and the website. `skills/`, `locales/ru/`, `catalog.json`, `packaging/`, `profiles/` and `assets/` are editable inputs. `plugins/context4/` is a committed generated projection for native Git marketplace installation. Do not edit it directly: run `npm run generate`, commit the projection, then run `npm run check`. CI checks the complete generated inventory, including extra files.
 
