@@ -1,6 +1,11 @@
-# Context4 for Codex and Claude Code
+[![Context4 Agent Kit — one library, every agent](assets/context4-agent-kit.webp)](https://ctx4.me/?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
+
+# Context4 MCP — business tools for your AI assistant
 
 Context4 connects Codex and Claude Code to business services through accounts you authorize. This plugin includes the Context4 MCP connection and three skills: service discovery and execution, client setup, and workflows across connected services. Available actions depend on your account, workspace permissions and active provider connections.
+
+**[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)** · [Choose your AI client](https://ctx4.me/connect?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
+
 
 ## Connect
 
@@ -23,7 +28,7 @@ Restart the client and complete Context4 browser OAuth when requested. The remot
 
 Confirm the intended records and changes before a write operation. A missing connection or failed request is not a completed task. This package provides no payment or media-generation tools.
 
-[Documentation](https://ctx4.me/docs/agent-setup.md) · [Support](https://ctx4.me/support) · [Privacy](https://ctx4.me/privacy) · [Terms](https://ctx4.me/terms).
+[Setup guide](https://ctx4.me/docs/agent-setup?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [Business workflows](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [How data is handled](https://ctx4.me/docs/data-handling?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [Support](https://ctx4.me/support) · [Privacy](https://ctx4.me/privacy) · [Terms](https://ctx4.me/terms).
 
 ## License
 

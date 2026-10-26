@@ -1,0 +1,18 @@
+{
+  "skill_name": "context4-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Подключи мой AI к amoCRM через Context4, аккаунт ещё не авторизован.",
+      "expected_output": "Determine host, reuse/configure MCP, install supported skills, return actual Connect Link, await ready, perform one safe read; no fabricated success.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Сверь клиентов в CRM со звонками и подготовь, но не отправляй сообщения.",
+      "expected_output": "Discover both systems, use schemas and eligible accounts, match validated keys, draft only, do not send.",
+      "files": []
+    }
+  ],
+  "execution": "deferred by user"
+}
