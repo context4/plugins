@@ -2,7 +2,7 @@
   {
     "id": "context4",
     "name": "Context4",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "role": "Работа с подключёнными сервисами",
     "baseline": true,
     "files": [
@@ -12,22 +12,69 @@
       "references/for-you.md",
       "references/platform.md",
       "references/errors.md"
-    ]
+    ],
+    "dependencies": {},
+    "labels": {
+      "en": {
+        "name": "Context4",
+        "description": "Work with connected services"
+      },
+      "ru": {
+        "name": "Context4",
+        "description": "Работа с подключёнными сервисами"
+      }
+    }
   },
   {
     "id": "context4-setup",
     "name": "Подключение Context4",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "role": "Установка, MCP, вход и первая проверка",
     "baseline": true,
-    "files": ["SKILL.md", "LICENSE", "ATTRIBUTION.md", "references/clients.md"]
+    "files": [
+      "SKILL.md",
+      "LICENSE",
+      "ATTRIBUTION.md",
+      "references/clients.md"
+    ],
+    "dependencies": {
+      "context4": "1.3.0"
+    },
+    "labels": {
+      "en": {
+        "name": "Context4 setup",
+        "description": "Installation, MCP, sign-in, and the first check"
+      },
+      "ru": {
+        "name": "Подключение Context4",
+        "description": "Установка, MCP, вход и первая проверка"
+      }
+    }
   },
   {
     "id": "context4-workflows",
     "name": "Задачи между системами",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "role": "Чтение, сопоставление и поручения в нескольких сервисах",
     "baseline": false,
-    "files": ["SKILL.md", "LICENSE", "ATTRIBUTION.md", "references/matching.md"]
+    "files": [
+      "SKILL.md",
+      "LICENSE",
+      "ATTRIBUTION.md",
+      "references/matching.md"
+    ],
+    "dependencies": {
+      "context4": "1.3.0"
+    },
+    "labels": {
+      "en": {
+        "name": "Cross-system tasks",
+        "description": "Read, match, and carry out tasks across services"
+      },
+      "ru": {
+        "name": "Задачи между системами",
+        "description": "Чтение, сопоставление и поручения в нескольких сервисах"
+      }
+    }
   }
 ]

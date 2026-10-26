@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="https://context4.me/?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=mcp-presence"><img src="plugins/context4/assets/logo.png" alt="Context4" width="96" /></a>
-</p>
+[![Context4 — ваши сервисы, один диалог](plugins/context4/assets/context4-cover-ru.webp)](https://context4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 # Context4 MCP — поручите работу вашему AI
 

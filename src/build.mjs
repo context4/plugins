@@ -2,7 +2,10 @@ import { createHash } from "node:crypto";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { zipSync } from "fflate";
-import { ids, root, skillFiles } from "./content.mjs";
+import { ids, root, skillFiles, library } from "./content.mjs";
+import { generatePlugins } from "./generate-plugins.mjs";
+
+await generatePlugins(true);
 
 const out = path.resolve(process.argv[2] ?? path.join(root, "dist"));
 const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
@@ -55,6 +58,7 @@ for (const name of [
 ])
   bundle[name] = await readFile(path.join(canonical, name));
 const artifacts = {
+  "skills-source.json": Buffer.from(JSON.stringify(library, null, 2) + "\n"),
   "plugin.zip": archive(openai),
   "claude-plugin.zip": archive(bundle),
 };
@@ -89,4 +93,4 @@ await writeFile(
     2,
   ) + "\n",
 );
-console.log(`Built ${Object.keys(artifacts).length} archives in ${out}`);
+console.log(`Built ${Object.keys(artifacts).length} artifacts in ${out}`);

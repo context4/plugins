@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="https://ctx4.me/?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=mcp-presence"><img src="plugins/context4/assets/logo.png" alt="Context4" width="96" /></a>
-</p>
+[![Context4 — your services, one conversation](plugins/context4/assets/context4-cover-en.webp)](https://ctx4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 # Context4 MCP — give your AI work to do
 
@@ -10,7 +8,6 @@ Connect AI assistants to CRM and business services through one hosted MCP server
 
 **[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)** · [Connect your AI](https://ctx4.me/connect?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence) · [По-русски](README.ru.md)
 
-[![Example requests: find overdue deals, find customer records, verify a connection](plugins/context4/assets/examples.png)](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
 
 ## Start with a task, not an integration project
 
@@ -134,3 +131,29 @@ The release script produces eight deterministic ZIPs and SHA256 metadata in `dis
 The public package, installer and release tooling are MIT licensed. Existing skill licenses and upstream attribution are retained. Hosted use is governed by [terms](https://ctx4.me/terms) and [privacy](https://ctx4.me/privacy).
 
 [Support](https://ctx4.me/support) · [Documentation](https://ctx4.me/docs/agent-setup.md).
+
+## Agent Kit source and selective installation
+
+[![Context4 Agent Kit: Setup, Services and Workflows](plugins/context4/assets/context4-agent-kit.webp)](https://ctx4.me/docs/skills?utm_source=github&utm_medium=readme&utm_campaign=mcp-presence)
+
+This repository now owns the canonical skill library for client plugins, standalone skill installation, marketplace archives and the website. `skills/`, `locales/ru/`, `catalog.json`, `packaging/`, `profiles/` and `assets/` are editable inputs. `plugins/context4/` is a committed generated projection for native Git marketplace installation. Do not edit it directly: run `npm run generate`, commit the projection, then run `npm run check`. CI checks the complete generated inventory, including extra files.
+
+The selective installer is available from this development checkout; the pinned v1.2.1 commands above retain their original all-skills behavior. A v1.3.0 tag or npm publication is not implied by this branch.
+
+```sh
+node src/cli.mjs list --json
+node src/cli.mjs install context4-workflows --agent codex --dry-run
+node src/cli.mjs install context4-workflows --agent codex
+node src/cli.mjs update context4-workflows --agent codex
+node src/cli.mjs remove context4-workflows --agent codex
+```
+
+Selection includes declared dependencies. With no skill IDs, install retains the existing all-skills behavior; update/remove act on the owned installed roots. `--lang ru` applies to selected roots and their new private dependencies. Unselected skills retain their bytes, language and release identity. Shared dependency replacement requires selecting all affected roots. `--source /path/to/skills-source.json` selects a local, versioned neutral release artifact for install/update; removal uses only local ownership and works offline for retired IDs. Only use artifacts from a trusted release; a matching digest does not authenticate an unknown publisher.
+
+Receipt v2 stores roots and per-skill version, language, source identity, exact dependencies and installed hashes. Legacy v1 receipts migrate during mutation; unavailable legacy source provenance is explicitly recorded, never invented. Locally modified files and unowned directories are not overwritten. An interrupted transaction retains a journal and backups for recovery on the next command. A legacy lock or interrupted recovery may require inspection before retrying.
+
+A DeepSeek-backed Codex session uses the Codex profile; the model name does not define a new skills directory. Other DeepSeek hosts can use their documented directory through `--dir`. Installation, native plugin validation and real account/MCP authorization are separate checks.
+
+`npm run build` creates eight ZIP packages plus `skills-source.json` and a checksum manifest. The neutral snapshot carries the canonical catalog, localized sources, plugin manifests and assets. The website and a future embedded agent can pin that snapshot by release and digest without invoking the CLI. The website renders its own locale and deployment origins; product runtime authorization remains outside this public package.
+
+Author a connector skill by adding its source files and localized references, then register its stable ID, localized labels, version, allowlisted files and exact dependencies in `catalog.json`. Use live Context4 discovery rather than copying private account details or stale tool schemas. Eval cases remain in the canonical source tree but are excluded from installed files and release ZIPs.

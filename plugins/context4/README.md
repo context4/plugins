@@ -1,10 +1,11 @@
+[![Context4 Agent Kit — one library, every agent](assets/context4-agent-kit.webp)](https://ctx4.me/?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
+
 # Context4 MCP — business tools for your AI assistant
 
 Context4 connects Codex and Claude Code to business services through accounts you authorize. This plugin includes the Context4 MCP connection and three skills: service discovery and execution, client setup, and workflows across connected services. Available actions depend on your account, workspace permissions and active provider connections.
 
 **[Explore Context4 →](https://ctx4.me/?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)** · [Choose your AI client](https://ctx4.me/connect?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence) · [Browse connectors](https://ctx4.me/apps?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
 
-[![Example requests for Context4](assets/examples.png)](https://ctx4.me/docs/business-cases?utm_source=github&utm_medium=plugin-readme&utm_campaign=mcp-presence)
 
 ## Connect
 
